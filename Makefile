@@ -5,10 +5,10 @@ make: heartbeat.c
 	$(CC) -o heartbeat heartbeat.c fedora.c
 
 install:
-	cp fedinfo /usr/bin/
+	cp heartbeat /usr/bin/
 
 uninstall:
-	rm /usr/bin/fedinfo
+	rm /usr/bin/heartbeat
 
 clean:
-	rm fedinfo
+	rm heartbeat
