@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <sys/sysinfo.h>
 #include <sys/utsname.h>
 
 #ifdef __linux__
