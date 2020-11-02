@@ -1,6 +1,12 @@
-#define FED_VERSION "/etc/fedora-release"
-#define FED_PACKAGEMAN "/usr/bin/dnf"
-#define FED_TEMPPACKAGE "/tmp/fedorapackagelist"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/utsname.h>
+#include <sys/sysinfo.h>
+
+#include "fedora.h"
+#include "heartbeat.h"
 
 void fedoraVer()
 {
@@ -61,4 +67,27 @@ void fedoraPackages()
 
         printf("Packages: %d\n", count);
     }
+}
+
+void fedoraInfo(long minute, long hour, long day, double megabyte)
+{
+    long m = minute;
+    long h = hour;
+    long d = day;
+    double meg = megabyte;
+
+    struct sysinfo info;
+    sysinfo(&info);
+
+    struct utsname uinfo;
+    uname(&uinfo);
+
+    printf("Shell: %s\n", printEnv("SHELL"));
+    printf("Uptime: %ld day(s), %ld hour(s) and %ld minute(s)\n", (info.uptime / d), (info.uptime % d) / h, (info.uptime % h) / m);
+    printf("Memory: %5.1fMB Total, %5.1fMB Free\n", info.totalram / meg, info.freeram / meg);
+    printf("Architechture: %s\n", uinfo.machine);
+    printf("Kernel: %s %s\tBuilddate: %s\n", uinfo.sysname, uinfo.release, uinfo.version);
+    printf("Machine name: %s\n", uinfo.nodename);
+    printf("User: %s\n", printEnv("USER"));
+    printf("CPU: %ld core(s)\n", sysconf(_SC_NPROCESSORS_ONLN));
 }

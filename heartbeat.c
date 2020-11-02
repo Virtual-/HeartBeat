@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <sys/utsname.h>
 
-#ifdef __linux__
-#include <sys/sysinfo.h>
-#endif
-
-#include "fedora.c"
+#include "fedora.h"
+#include "heartbeat.h"
 
 const char *printEnv(const char *env)
 {
@@ -22,28 +16,16 @@ const char *printEnv(const char *env)
 
 int main(int argc, char *argv[])
 {
-    const long minute = 60;
-    const long hour = minute * 60;
-    const long day = hour * 24;
-    const double megabyte = 1024 * 1024;
+    long minute = 60;
+    long hour = minute * 60;
+    long day = hour * 24;
+    double megabyte = 1024 * 1024;
+
 
     #ifdef __linux__
-    struct sysinfo info;
-    sysinfo(&info);
-
-    struct utsname uinfo;
-    uname(&uinfo);
-
     fedoraVer();
     fedoraPackages();
-    printf("Shell: %s\n", printEnv("SHELL"));
-    printf("Uptime: %ld day(s), %ld hour(s) and %ld minute(s)\n", (info.uptime / day), (info.uptime % day) / hour, (info.uptime % hour) / minute);
-    printf("Memory: %5.1fMB Total, %5.1fMB Free\n", info.totalram / megabyte, info.freeram / megabyte);
-    printf("Architechture: %s\n", uinfo.machine);
-    printf("Kernel: %s %s\tBuilddate: %s\n", uinfo.sysname, uinfo.release, uinfo.version);
-    printf("Machine name: %s\n", uinfo.nodename);
-    printf("User: %s\n", printEnv("USER"));
-    printf("CPU: %ld core(s)\n", sysconf(_SC_NPROCESSORS_ONLN));
+    fedoraInfo(minute, hour, day, megabyte);
     #endif
 
     return 0;
