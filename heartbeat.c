@@ -5,6 +5,10 @@
 #include <sys/sysinfo.h>
 #include <sys/utsname.h>
 
+#ifdef __linux__
+#include <sys/sysinfo.h>
+#endif
+
 #include "fedora.c"
 
 const char *printEnv(const char *env)
