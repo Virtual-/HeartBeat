@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "fedora.h"
+#include "netbsd.h"
 #include "heartbeat.h"
 
 const char *printEnv(const char *env)
@@ -26,6 +27,10 @@ int main(int argc, char *argv[])
     fedoraVer();
     fedoraPackages();
     fedoraInfo(minute, hour, day, megabyte);
+    #endif
+
+    #ifdef __NetBSD__
+    testNetBSD();
     #endif
 
     return 0;
