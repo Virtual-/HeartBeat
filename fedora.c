@@ -3,7 +3,10 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/utsname.h>
+
+#ifdef __linux__
 #include <sys/sysinfo.h>
+#endif
 
 #include "fedora.h"
 #include "heartbeat.h"
