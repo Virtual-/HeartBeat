@@ -1,13 +1,11 @@
+#ifdef __linux__
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/utsname.h>
 
-#ifdef __linux__
 #include <sys/sysinfo.h>
-#endif
-
 #include "fedora.h"
 #include "heartbeat.h"
 
@@ -94,3 +92,5 @@ void fedoraInfo(long minute, long hour, long day, double megabyte)
     printf("User: %s\n", printEnv("USER"));
     printf("CPU: %ld core(s)\n", sysconf(_SC_NPROCESSORS_ONLN));
 }
+
+#endif
