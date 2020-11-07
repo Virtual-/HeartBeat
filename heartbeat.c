@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 
     #ifdef __linux__
     fedora_version();
-    fedora_packages();
     fedora_info(minute, hour, day, megabyte);
     #endif
 

@@ -6,7 +6,6 @@
 #define FED_TEMPPACKAGE "/tmp/fedorapackagelist"
 
 void fedora_version();
-void fedora_packages();
 void fedora_info(long minute, long hour, long day, double megabyte);
 
 #endif
