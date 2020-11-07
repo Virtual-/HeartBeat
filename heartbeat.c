@@ -5,7 +5,7 @@
 #include "netbsd.h"
 #include "heartbeat.h"
 
-const char *printEnv(const char *env)
+const char *printenv(const char *env)
 {
     const char *arg = getenv(env);
     if (arg == NULL) {
@@ -24,13 +24,13 @@ int main(int argc, char *argv[])
 
 
     #ifdef __linux__
-    fedoraVer();
-    fedoraPackages();
-    fedoraInfo(minute, hour, day, megabyte);
+    fedora_version();
+    fedora_packages();
+    fedora_info(minute, hour, day, megabyte);
     #endif
 
     #ifdef __NetBSD__
-    testNetBSD();
+    print_netbsd();
     #endif
 
     return 0;

@@ -3,15 +3,16 @@
 #include <sys/utsname.h>
 
 #include "heartbeat.h"
+#include "unix.h"
 
-void testNetBSD() 
+void print_netbsd() 
 {
     struct utsname uinfo;
     uname(&uinfo);
 
     printf("Version: %s %s\n", uinfo.sysname, uinfo.release);
-    printf("Packages:\n");
-    printf("Shell: %s\n", printEnv("SHELL"));
+    get_packages("pkg_info > /tmp/pkglist");
+    printf("Shell: %s\n", printenv("SHELL"));
 }
 
 #endif
