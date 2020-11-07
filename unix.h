@@ -3,5 +3,6 @@
 
 void get_packages(const char *command);
 void linux_version(const char *filename);
+const char *printenv(const char *env);
 
 #endif

@@ -47,6 +47,21 @@ void get_packages(const char *command)
     }
 }
 
+/* GNU/Linux + *BSD Function.
+ * This function prints out an environment variable.
+ *
+ * This should work in most UNIX environments.
+ */
+const char *printenv(const char *env)
+{
+    const char *arg = getenv(env);
+    if (arg == NULL) {
+        printf("Failed to get variable %s.\n", env);
+    }
+
+    return arg;
+}
+
 /* GNU/Linux Function.
  * Get's the current version of the GNU/Linux distro by reading a file
  * commonly stored in /etc/
