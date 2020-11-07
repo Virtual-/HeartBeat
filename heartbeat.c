@@ -17,10 +17,10 @@ const char *printenv(const char *env)
 
 int main(int argc, char *argv[])
 {
-    long minute = 60;
-    long hour = minute * 60;
-    long day = hour * 24;
-    double megabyte = 1024 * 1024;
+    const long minute = 60;
+    const long hour = minute * 60;
+    const long day = hour * 24;
+    const double megabyte = 1024 * 1024;
 
 
     #ifdef __linux__
