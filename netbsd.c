@@ -5,6 +5,8 @@
 #include "heartbeat.h"
 #include "unix.h"
 
+// This is the NetBSD specific C source file.
+
 void print_netbsd() 
 {
     struct utsname uinfo;

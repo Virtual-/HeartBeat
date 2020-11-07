@@ -9,29 +9,10 @@
 #include "heartbeat.h"
 #include "unix.h"
 
-void fedora_version()
-{
-    FILE *f_ptr;
-    char buffer[50] = "";
+// This is the Fedora specific C source file.
 
-    f_ptr = fopen(FED_VERSION, "r");
 
-    if (f_ptr == NULL) {
-        printf("Failed to open the file %s\n", FED_VERSION);
-        if (f_ptr) {
-            fclose(f_ptr);
-        }
-        exit(1);
-    }
-
-    fgets(buffer, sizeof(buffer), f_ptr);
-    buffer[50] = '\0';
-    fclose(f_ptr);
-
-    printf("Version: %s", buffer);
-}
-
-void fedora_info(long minute, long hour, long day, double megabyte)
+void print_fedora(long minute, long hour, long day, double megabyte)
 {
     long m = minute;
     long h = hour;
@@ -44,6 +25,7 @@ void fedora_info(long minute, long hour, long day, double megabyte)
     struct utsname uinfo;
     uname(&uinfo);
 
+    linux_version(FED_VERSION); // FED_VERSION is defined in fedora.h
     get_packages("dnf list installed > /tmp/pkglist");
     printf("Shell: %s\n", printenv("SHELL"));
     printf("Uptime: %ld day(s), %ld hour(s) and %ld minute(s)\n", (info.uptime / d), (info.uptime % d) / h, (info.uptime % h) / m);

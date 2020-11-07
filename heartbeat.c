@@ -24,8 +24,7 @@ int main(int argc, char *argv[])
 
 
     #ifdef __linux__
-    fedora_version();
-    fedora_info(minute, hour, day, megabyte);
+    print_fedora(minute, hour, day, megabyte);
     #endif
 
     #ifdef __NetBSD__
